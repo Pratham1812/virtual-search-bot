@@ -1,15 +1,18 @@
-import wx
-import wikipedia
-import wolframalpha
-from gtts import gTTS
-import os
-import webbrowser
-
+try:
+    import wx
+    import wikipedia
+    import wolframalpha
+    from gtts import gTTS
+    import os
+    import webbrowser
+except ImportError:
+    print("All modules not installed ")
 tts = gTTS(text="Hello!!! I am Your Personal Assistant", lang='en')
 tts.save("pcvoice.mp3")
 # to start the file from python
 os.system("start pcvoice.mp3")
 
+#The gui 
 class MyFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None,
@@ -34,7 +37,7 @@ class MyFrame(wx.Frame):
         input = input.lower()
         try:
         #wolframalpha
-            app_id = "JKL97W-U4ALW628KV"
+            app_id = "YOUR API KEY"
             client = wolframalpha.Client(app_id)
             res = client.query(input)
             answer = next(res.results).text
